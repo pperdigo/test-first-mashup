@@ -3,7 +3,7 @@ const config = {
     prefix: '/',
     port: '443',
     isSecure: true,
-    webIntegrationId: 'qWwVtsWqOsO_nTiGaiSo71NXvWyBiBax'
+    webIntegrationId: process.env.REACT_APP_BIX_KEY
 };
 
 const baseUrl = (config.isSecure ? "https://" : "http://") + config.host + (config.port ? ":" + config.port : "") + config.prefix + "resources"
@@ -47,7 +47,7 @@ export default new Promise((resolve) => {
                 console.error('Erro na Engine do Qlik:', e)
             })
             console.log('Conexão feita', qlik)
-            let app = qlik.openApp('58ab4c3a-bb56-4084-a36d-579c5e4542d3', config)
+            let app = qlik.openApp(process.env.REACT_APP_APP_ID, config)
             console.log('Aplicativo aberto', app)
             resolve(app)
         })
